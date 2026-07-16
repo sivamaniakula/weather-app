@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Station — Weather Readout</title>
+<meta name="description" content="A simple instrument-panel style weather lookup.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="panel">
+
+    <header class="panel__header">
+      <div class="brand">
+        <span class="brand__mark">◐</span>
+        <span class="brand__text">STATION</span>
+      </div>
+      <div class="clock" id="clock">--:--:--</div>
+    </header>
+
+    <form class="lookup" id="lookupForm" autocomplete="off">
+      <input
+        type="text"
+        id="cityInput"
+        class="lookup__input"
+        placeholder="Enter a city — e.g. Amalapuram"
+        aria-label="City name"
+      >
+      <button type="submit" class="lookup__btn">Read</button>
+      <button type="button" class="lookup__btn lookup__btn--ghost" id="locateBtn" title="Use my location">⌖</button>
+    </form>
+
+    <p class="status" id="status">Waiting for input.</p>
+
+    <section class="readout" id="readout" hidden>
+
+      <div class="readout__top">
+        <div class="place">
+          <h1 class="place__name" id="placeName">—</h1>
+          <p class="place__meta" id="placeMeta">—</p>
+        </div>
+        <div class="dial" id="dial">
+          <svg viewBox="0 0 200 200" class="dial__svg" aria-hidden="true">
+            <circle cx="100" cy="100" r="88" class="dial__track"/>
+            <path id="dialArc" class="dial__arc"/>
+            <circle cx="100" cy="100" r="60" class="dial__face"/>
+          </svg>
+          <div class="dial__reading">
+            <span class="dial__temp" id="temp">--</span>
+            <span class="dial__unit">°C</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="condition" id="condition">—</p>
+
+      <div class="grid">
+        <div class="cell">
+          <span class="cell__label">Feels like</span>
+          <span class="cell__value" id="feelsLike">--°</span>
+        </div>
+        <div class="cell">
+          <span class="cell__label">Humidity</span>
+          <span class="cell__value" id="humidity">--%</span>
+        </div>
+        <div class="cell">
+          <span class="cell__label">Wind</span>
+          <span class="cell__value" id="wind">-- km/h</span>
+        </div>
+        <div class="cell">
+          <span class="cell__label">Pressure</span>
+          <span class="cell__value" id="pressure">-- hPa</span>
+        </div>
+      </div>
+
+      <div class="forecast" id="forecast"></div>
+
+    </section>
+
+  </div>
+
+  <footer class="credit">Data — Open-Meteo · No key required</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
